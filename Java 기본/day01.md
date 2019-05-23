@@ -1,4 +1,4 @@
-JAVA 기초
+Java의 특징, Primitive type
 =========
 > 과정 1일차 (19.05.13)
 
