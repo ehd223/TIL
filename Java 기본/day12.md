@@ -22,7 +22,7 @@
 ---
 
 ### 2. 설계(일반적인 Java - DB 연동)
-![](./normal_bizapp_diagram.png)
+![](../assets/normal_bizapp_diagram.png)
 
 - 위와 같은 구조에서 App과 Oracle 사이에서 Object를 컨트롤할 수 있게 해주는 Biz와 Dao 클래스가 위 시스템의 Frame이다.
 
