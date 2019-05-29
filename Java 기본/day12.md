@@ -1,7 +1,7 @@
 객체지향(OOP) IV
 =========
 
-> 과정 11일차 (19.05.28)
+> 과정 12일차 (19.05.28)
 
 ### 1. 제어자(Modifier)
 - 접근 제한자 : `public`, `protected`, `default`, `private`
