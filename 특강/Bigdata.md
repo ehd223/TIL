@@ -11,6 +11,7 @@ Bigdata 특강
 - **특이점(from Ray Kuzweil)** : 미래에 기술변화의 속도가 빨라지고 그 영향이 매우 깊어 인간의 생활이 되돌릴 수 없도록 변화하는 시기 => 2045년으로 예측되었으나, 2025년으로 특이점이 앞당겨짐.
 <br>
 - **4차 산업혁명의 핵심 구성요소** : Connectivity + Intelligence
+
 - 잘 대응중인 나라
     - 독일
         - Keyword : Indeustry 4.0
