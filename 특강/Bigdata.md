@@ -158,3 +158,7 @@ Bigdata 특강
 ------
 
 > Tool을 잘쓰는 사람 X / 알고리즘을 잘 아는 사람이 되자
+
+
+
+** 김희원 개발자님 (futurian@naver.com / kimhe1@kaist.ac.kr)
