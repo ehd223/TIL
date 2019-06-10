@@ -7,6 +7,22 @@ SQL
 - RDBMS
     - 여러 종류가 있음
     - Relation 간 관계를 가지고 있는 DB형태
+    - DDL, DML, DCL
+        - DDL(Data Definition Language) : 데이터 정의어
+            - CREATE
+            - ALTER
+            - DROP
+            - TRUNCATE
+            - RENAME
+        - DML(Data Manipulation Language) : 데이터 조작어
+            - SELECT
+            - INSERT
+            - UPDATE
+            - DELETE
+        - DCL(Data Control Language) : 데이터 제어어(권한과 관련있음)
+            - GRANT
+            - REVOKE        
+
 
 ### 1.SELECT
 
