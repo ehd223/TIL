@@ -51,6 +51,22 @@ HAVING <condition>;
 ```
 - `WHERE`과 `Having`을 같이 사용할 수도 있지만, `WHERE`는 GROUP BY 전에 사용하고 HAVING은 이후에 사용한다.
 
+
+### Rollup
+
+정의 : ROLLUP은 GROUP BY 절과 같이 사용 되며, GROUP BY절에 의해서 그룹 지어진 집합 결과에 대해서 좀 더 상세한 정보를 반환하는 기능을 수행 한다.
+
+ex)
+```sql
+SELECT b.dname, a.job, SUM(a.sal) sal, COUNT(a.empno) emp_count 
+FROM emp a, dept b
+WHERE a.deptno = b.deptno
+GROUP BY ROLLUP(b.dname, a.job) 
+-- Rollup을 통해 부서별, 직업별 합계(sal, count(empno))를 쉽게 구할 수 있음.
+```
+
+---
+
 ### 3. 뷰(VIEW) & 서브쿼리(SubQuery)
 #### VIEW
 - SELECT 문 그 자체. => 내부적으로 SELECT 문을 실행하여 일시적인 가상 테이블을 만들어 보여주는 것.
