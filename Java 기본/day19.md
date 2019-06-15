@@ -4,13 +4,13 @@ HTML
 > 과정 19일차 (19.06.12)
 
 Eclipse의 Dynamic web project 구조
-- Dynamic(Java Resources) : src
+- Dynamic(Java Resources) : src
 - Static : WebContent
 - 그 외 : JavaScript Resources
 
 > HTML은 계속 했었으니 몰랐던 것만 짚고 넘어가자
 
-###1. HTML 5에서 모든 요소는 Contents Category로 분류한다.
+### 1. HTML 5에서 모든 요소는 Contents Category로 분류한다.
 여전히 Inline 속성 태그와 Block 속성 태그가 구분되어 있지만, HTML5에서는 따로 정의하고있지는 않고, Contents Category로 분류되어있다.
 - Metadata
 - Flow
@@ -20,7 +20,7 @@ Eclipse의 Dynamic web project 구조
     - Heading
     - Section
 
-###2. Javascript의 위치는 어떠한 상황에서 실행되는 부분인지 나눠서 넣자
+### 2. Javascript의 위치는 어떠한 상황에서 실행되는 부분인지 나눠서 넣자
 이유 : Javascript가 어느 위치에 오냐에 따라 browser의 페이지 로드 혹은 performance에 영향을 주기 때문.
 
 - jQuery 같은 라이브러리의 script는 ``head``안에 넣자. 
@@ -38,7 +38,7 @@ Eclipse의 Dynamic web project 구조
 - 잘 모르겠으면 page blocking issue가 없는 한 ``head`` 안에 다 넣어놓고 쓰자(ㅋㅋㅋㅋ)
     > If you cannot decide, put it in the head until you have a reason not to such as page blocking issues.
 
-###3. head 태그 안에 `<base>` 태그를 이용하여 모든 href의 기본을 지정 가능하다.
+### 3. head 태그 안에 `<base>` 태그를 이용하여 모든 href의 기본을 지정 가능하다.
 ex)
 ```html
     <head>
@@ -48,9 +48,9 @@ ex)
     <!-- http://www.mysite.com/info.html -->
 ```
 
-###4. `<img>` 태그는 다른 태그와 다르게 서버에서 다운로드 받아 렌더링 한다.
-###5. `<table>` 태그는 HTML5에서 border 속성을 지원하지 않는다.**
+### 4. `<img>` 태그는 다른 태그와 다르게 서버에서 다운로드 받아 렌더링 한다.
+### 5. `<table>` 태그는 HTML5에서 border 속성을 지원하지 않는다.**
 CSS를 이용하여 조정하자
-###6. ``onclick`` 사용을 하지 말자
+### 6. ``onclick`` 사용을 하지 말자
 - **Javascript와 HTML의 분리**
 - => 동작과 표현을 분리함으로써, 코드의 유지보수 관점에서 더 좋은 코드를 작성 가능.
