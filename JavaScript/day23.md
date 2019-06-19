@@ -29,6 +29,3 @@ primitive type
 - `parseInt`
 - `parseFloat`
 
-### 객체
-자바스크립트의 가장 기초적인 자료형은 객체(object)
-- 문자열, 수치형, 부울형도 객체처럼 구현되어있음. (Immutable objects)
