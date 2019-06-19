@@ -74,6 +74,7 @@ Javascript 2
     var myCar = new Car(); // Error
     ```
 <br>
+
 #### 생성자 함수를 이용하여 객체를 만들 수 있다.
 - 멤버를 `var`로 선언하면 private, 멤버를 `this.` 으로 선언하면 public
 ```js
