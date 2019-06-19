@@ -139,7 +139,8 @@ HTML 문서의 계층적인 구조를 트리로 표현한다.
 BOM 그림
 ![](../assets/bom.jpg)
 
-####JavaScript에서 DOM Element 가져오기
+#### JavaScript에서 DOM Element 가져오기
+
 1. getElementby.. 로 가져오기
 2. name으로 가져오기 : 입력 요소(form 안에 있는 element에만 해당.)
 ```js
