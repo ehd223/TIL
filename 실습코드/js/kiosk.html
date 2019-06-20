@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>헤븐국밥</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        header{
+            text-align: center;
+            margin:50px;
+        }
+
+        #page-two{
+            display : none;
+        }
+        #summary{
+            background-color: whitesmoke;
+        }
+
+        .card-img-top{
+            width:300px;
+            height:180px;
+        }
+        img.center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+        }
+        #cart{
+            margin:50px;
+        }
+        footer{
+            margin-top:100px;
+            margin-bottom:100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>
+            Heaven 국밥
+        </h2>
+        <p>3대째 물려받아 50년의 전통을 지닌 진한 맛!</p>
+    </header>
+    <div class="container">
+        <div id="menu_select">
+            <div class="row" id="page-one">
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/andong.jpg" class="card-img-top">
+                    <div class="card-body" id="andong">
+                        <h5 class="card-title name">안동국밥</h5>
+                        <p class="card-text price">5000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/choo.jpg" class="card-img-top">
+                    <div class="card-body" id="choo">
+                        <h5 class="card-title name">추어탕</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/cowhead.jpg" class="card-img-top">
+                    <div class="card-body" id="cowhead">
+                        <h5 class="card-title name">소머리국밥</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/gul.jpg" class="card-img-top">
+                    <div class="card-body" id="gul">
+                        <h5 class="card-title name">굴국밥</h5>
+                        <p class="card-text price">7000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/kong.jpg" class="card-img-top">
+                    <div class="card-body" id="kong">
+                        <h5 class="card-title name">콩나물국밥</h5>
+                        <p class="card-text price">5000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/mom.jpg" class="card-img-top">
+                    <div class="card-body" id="mom">
+                        <h5 class="card-title name">몸국</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- page two -->
+            <div class="row" id="page-two">
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/naejang.jpg" class="card-img-top">
+                    <div class="card-body" id="naejang">
+                        <h5 class="card-title name">내장탕</h5>
+                        <p class="card-text price">8000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/pig.jpg" class="card-img-top">
+                    <div class="card-body" id="pig">
+                        <h5 class="card-title name">돼지국밥</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/seonji.jpg" class="card-img-top">
+                    <div class="card-body" id="seonji">
+                        <h5 class="card-title name">선지국</h5>
+                        <p class="card-text price">7000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/siraegi.jpg" class="card-img-top">
+                    <div class="card-body" id="siraegi">
+                        <h5 class="card-title name">시래기국밥</h5>
+                        <p class="card-text price">5000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/sullung.jpg" class="card-img-top">
+                    <div class="card-body" id="sullung">
+                        <h5 class="card-title name">설렁탕</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+                <div class="card col-md-4" style="width: 18rem;">
+                    <img src="img/sundae.jpg" class="card-img-top">
+                    <div class="card-body" id="sundae">
+                        <h5 class="card-title name">순대국밥</h5>
+                        <p class="card-text price">6000원</p>
+                        <button href="#" class="btn btn-primary add">담기</a>
+                    </div>
+                </div>
+            </div>
+            <!-- page two end -->
+            <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="page">
+                    <li class="page-item active"><button class="page-link">1</button></li>
+                    <li class="page-item"><button class="page-link">2</button></li>
+                </ul>
+            </nav>
+        </div>
+
+    <!-- pagination script -->
+    <script>
+        var pagenav = document.getElementById("page");
+
+        var navlists = document.getElementsByClassName("page-item");
+
+        var links = document.getElementsByClassName("page-link");
+
+        var page_one = document.getElementById("page-one");
+        var page_two = document.getElementById("page-two");
+
+        var link_one = links[0];
+        var link_two = links[1];
+
+        link_one.addEventListener('click', function(){
+            navlists[0].classList.add("active");
+            navlists[1].classList.remove("active");
+
+            page_one.style.display = "flex";
+            page_two.style.display = "none";
+        });     
+
+        link_two.addEventListener('click', function(){
+            navlists[0].classList.remove("active");
+            navlists[1].classList.add("active");
+
+            page_one.style.display = "none";
+            page_two.style.display = "flex";
+        });
+
+    </script>
+    <!-- pagination script end -->
+
+    <br><br>
+    <div id="cart">
+        <div class="row">
+            <div class="col-md-4 offset-md-2" id="summary">
+
+            </div>
+            <div class="row col-md-4 offset-md-2" id="pricing">
+                <div style="margin:30px;">
+                    총 : <span id="price-sum"></span>원
+                </div>
+                <div style="margin:30px;">
+                    <button id="pay-button" class="btn btn-success">계산하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- add to cart script -->
+    <script>
+        var addButtons = document.getElementsByClassName("add");
+
+        var sumplace = document.getElementById("summary");
+        var picks = document.getElementsByClassName("picks");
+        var priceSum = document.getElementById("price-sum");
+
+        var calc = function(){
+            var sum = 0;
+            for(let pick of picks){
+                var amount = parseInt(pick.getElementsByClassName("amount")[0].value);
+                var price = parseInt(pick.getElementsByClassName("price-on-sum")[0].innerText);
+
+                sum += amount*price;
+            }
+            priceSum.innerText = sum;
+        }
+
+        for(let button of addButtons){
+            button.addEventListener('click', function(){
+                var par = button.parentElement;
+                var name = par.children[0].innerText;
+                var price = par.children[1].innerText;
+
+                var isExsists = false;
+                var picked;
+
+                for(let pick of picks){
+                    if(pick.id == par.id){
+                        isExsists = true;
+                        picked = pick;
+                        break;
+                    }
+                }
+                
+                if(isExsists){
+                    var currAmount = parseInt(picked.getElementsByClassName("amount")[0].value);
+                    picked.getElementsByClassName("amount")[0].value = currAmount+1;
+                }
+                else{
+                    var newDiv = document.createElement('div');
+                    var innerDiv = "<div class='row picks' id='" + par.id + "'>" + "<div class='col-md-4'>" + 
+                                name + "<br><p class='price-on-sum'>" + price + "</p></div>" + 
+                                "<div class='col-md-6'>" +
+                                "<input class='amount form-control col-md-3' type='text' value='1' disabled>"+
+                                "</div>" + "<div class='col-md-2'>" + "<button class='btn btn-danger remove'>X</button>" +
+                                "</div>";
+                    
+                    newDiv.innerHTML = innerDiv;
+
+                    sumplace.appendChild(newDiv);
+                    
+                    var removeButton = newDiv.getElementsByClassName("remove")[0];
+                    removeButton.addEventListener('click', function(){
+                        var par = removeButton.parentElement.parentElement.parentElement;
+                        par.remove();
+                        calc();
+                    })
+                }
+                calc();
+            })
+        }
+    </script>
+    <!-- add to cart script end -->
+
+    <!-- move to payment script -->
+    <script>
+        var moveToPayBtn = document.getElementById("pay-button");
+        moveToPayBtn.addEventListener('click', function(){
+            location.href = "#select-pay";
+        });
+    </script>
+    <!-- move to payment script end-->
+    
+    <br><br><br>
+
+    <div id="select-pay">
+        <div class="row" id="whereto">
+            <span>포장 여부</span>
+            <div class="col-md-4 offset-md-2">
+                <label for="here">
+                    <img src="img/here.png" alt="here img" width="100">
+                </label>
+                <input type="radio" id="here" name="whereto" value="매장식사">
+            </div>
+            <div class="col-md-4">
+                <label for="takeout">
+                    <img src="img/takeout.png" alt="here img" width="100">
+                </label>
+                <input type="radio" id="takeout" name="whereto" value="테이크아웃">
+            </div>
+        </div>
+        <div class="row" id="payment">
+            <span>결제 수단</span>
+            <div class="col-md-4 offset-md-2">
+                <label for="credit">
+                    <img src="img/credit.jpg" alt="credit img" width="100">
+                </label>
+                <input type="radio" id="credit" name="payment" value="카드">
+            </div>
+            <div class="col-md-4">
+                <label for="cash">
+                    <img src="img/cash.png" alt="credit img" width="100">
+                </label>
+                <input type="radio" id="cash" name="payment" value="현금">
+            </div>
+        </div>
+        <div class="row" id="requirement">
+            <span>요청 사항</span>
+            <div class="offset-md-2 col-md-4">
+                <input class="form-control" type="text" placeholder="ex) 오이 빼주세요." name="requirement">
+            </div>
+        </div>
+        <div style="text-align: center; margin:50px;">
+            <button id="check" class="btn btn-primary" data-target="#exampleModal" data-toggle="modal">확인하기</button>
+            <button type="submit" style="display:none;"></button>
+        </div>
+    </div>
+      
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">주문 확인</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="offset-md-2 col-md-4" id="pick-result">
+
+                </div>
+                <div class="col-md-4" id="sum-all">
+                    <p>포장 여부 : <span id="whereto-result"></span></p>
+                    <p>결제수단 : <span id="pay-result"></span></p>
+                    <p>요청사항 : <span id="req-result"></span></p>
+                    <p>총 : <span id="price-result"></span> 원</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- check all script -->
+    <script>
+        var payArea = document.getElementById("select-pay");
+
+        var checkBtn = document.getElementById("check");
+        var whereto;
+        var payment;
+        var requirement = "";
+
+        checkBtn.addEventListener('click', function(){
+            if(payArea.querySelectorAll("input[name=whereto]:checked")[0] != undefined){
+                whereto = payArea.querySelectorAll("input[name=whereto]:checked")[0].value;
+            }else{
+                alert('매장식사 혹은 포장 중 선택해주세요');
+                return;
+            }
+            if(payArea.querySelectorAll("input[name=payment]:checked")[0] != undefined){
+                payment = payArea.querySelectorAll("input[name=payment]:checked")[0].value;
+            }else{
+                alert('결제수단을 선택해주세요');
+                return;
+            }
+            if(payArea.querySelectorAll("input[name=requirement]")[0] != undefined){
+                requirement = payArea.querySelectorAll("input[name=requirement]")[0].value;
+            }else{
+                requirement = "없음";
+            }
+
+            var choices = sumplace.cloneNode(true);
+            choices.classList = [];
+            for(let choice of choices.getElementsByClassName("picks")){
+                choice.getElementsByClassName("remove")[0].remove();
+            }
+
+            var pickResult = document.getElementById("pick-result");
+            pickResult.innerHTML = "";
+            pickResult.appendChild(choices);
+
+            document.getElementById("whereto-result").innerText = whereto;
+            document.getElementById("pay-result").innerText = payment;
+            document.getElementById("req-result").innerText = requirement;
+            document.getElementById("price-result").innerText = priceSum.innerText;
+
+        });
+    </script>
+    <!-- check all script end-->
+
+    <footer sytle="text-align:center;">
+        <h2>
+            Heaven국밥을 찾아주셔서 감사합니다.
+        </h2><br>
+        <h2>
+            언제나 한결같은 맛으로 모시겠습니다.
+        </h2><br>
+        <p>대표 : 이혜빈</p>
+    </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</body>
+</html>
