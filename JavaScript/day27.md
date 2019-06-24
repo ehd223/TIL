@@ -39,7 +39,7 @@ function getData(){
 ```
 
 ```java
-// Using ajax
+// using jQuery
 function idDuplicationCheck (id) {
     var url = "url name";
     var par1 = $("input[name='param1']");
@@ -77,3 +77,4 @@ function idDuplicationCheck (id) {
 #### Ajax 사용 시 주의점
 Ajax는 기본적으로 `async`로 동작하기 때문에 실행 후 response로 넘어오는 데이터를 처리할 경우 callback이나 `Promise` 나 `Async`를 이용하여 처리할 것.
 
+> Ajax call을 구현하는 것은 어렵지 않지만, 비동기 처리 등에 꼭 신경쓰면서 사용하자
