@@ -81,7 +81,13 @@ IoC의 두 가지 지원 형태
     - Dependency Pool
     - Contextualized Dependency Lookup
 - Dependency Injection
-    - 
+    - 의존성을 외부에서 결정하도록 하는 방법 
+    - Lookup과의 차이점
+        1. Lookup은 Pool에서 검색해온 객체를 코드상에서 직접 의존성 발생시킴
+        2. Injection은 별도파일(xml)을 이용하여 bean의 property 혹은 constructure-args로 지정
+    - Lookup보다 훨씬 유연하고 간단한 방법 -> 별도 파일을 통해 의존성을 주입하기 때문에, 소스코드의 변경 없이 주입 타겟 변경이 가능.
+    - Construction Injection
+    - Setter Injection
 
 **의존성 관리를 사용하는 이유**
 - 의존관계가 있는 객체 객체 생성 코드를 메소드에서 호출할 경우
