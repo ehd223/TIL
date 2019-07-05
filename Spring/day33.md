@@ -55,7 +55,7 @@ IoC란?
 ![](../assets/spring_container.png)
 
 1. 클라이언트(User)가 Spring 설정 파일을 로딩하여 컨테이너 구동.
-2. Container는 SpringBeanConfigurationFile에 등록된 Bean 생성.
+2. Container는 Spring Bean Configuration File에 등록된 Bean 생성.
     - ApplicationContext 클래스로 만들어진 Container -> Pre-loading이 default
     - BeanFactory 클래스로 만들어진 Container -> Lazy-loading이 default
     - 바꾸고 싶다면, bean 태그에 lazy-init 속성을 "true", "false"로 바꾸어주면됨.
@@ -66,8 +66,32 @@ IoC란?
 > - GenericXmlApplicationContext : 파일 시스템 혹은 클래스 경로에 있는 XML 설정 파일을 로드하여 구동하는 컨테이너.
 > - XmlWebApplicationContext : 웹 기반의 스프링 어플리케이션을 개발할 때 사용하는 컨테이너
 
-**bean의 속성**
-!! 나중에 따로 정리할 것!!
+#### Spring XML 파일
+bean 저장소에 해당하는 Spring Bean Configuration File을 참조하여 bean의 생명주기를 관리하고, 서비스를 제공함.
+-> 프로젝트에 전체적으로 가장 중요한 역할이므로, 정확하게 작성하고 관리하는 것이 중요함.
+
+**`<import>` Elemenet**
+- bean을 등록하는 것 이외에도 트랜잭션 관리, 예외처리, 다국어 처리 등 복잡하고 다양한 설정이 필요함.
+- 관리 효율을 위하여 분할하여 작성한 XML파일들을 import하여 한 파일로 합치는 효과를 낼 수 있음
+**`<bean>` Elemenet**
+- 클래스를 등록하는데 사용되는 element
+- Fields
+    - class : 필수 / 정확한 경로와 패키지 이름으로 지정
+    - 클라이언트(App, Test 등) 에서 객체를 요청(Lookup)하려면 반드시 이름이 필요함. 아래는 이름으로 사용가능한 속성.
+        - id : 
+        - name : 
+    - init-method : 객체의 생성(생성자 호출) 이후, 멤버변수 초기화 등이 필요할 때 호출될 메소드를 지정.
+    - destroy-method : 객체가 삭제되기 직전에 호출될 메소드 지정
+    - lazy-init : bean들을 컨텍스트 구동시점이 아닌 해당 bean이 사용되는 시점에 생성하도록 변경하는 속성
+        - default : 사용하는 컨테이너의 default를 따름
+        - false : Pre-loading방식(ApplicationContext의 default)
+        - true : lazy-load 방식(BeanFactory의 default)
+    - scope : bean을 사용하여 생성된 객체를 어느 범위까지 사용하는지 지정하는 속성
+        - singleton : GoF 디자인 패턴 중 하나인 싱글톤 패턴. 단 하나의 객체만 스프링 컨테이너에 생성되어 운용되도록 하는 것.
+        - prototype : bean이 요청될 때마다, 매 번 새로운 객체를 생성하는 것.
+        - request
+        - session
+        - global session
 
 ### 의존성 주입 (Dependency Injection)
 #### 의존성 관리
