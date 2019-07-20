@@ -1,9 +1,9 @@
-Spring I
+#Spring 
 =========
 
-> 과정 33일차 (19.07.02)
+> 날짜 : 19.07.02
 
-### What is Spring?
+## What is Spring?
 
 **자바 기반의 프레임워크** (처리 영역에 따른 구분)
 - **Presentation** (View)
@@ -29,19 +29,21 @@ Spring I
 > Spring의 가장 큰 특징 중 하나로, 기존에 만들었던 클래스를 Spring의 Container 위에서 별 다른 수정없이 실행 가능.
 > => 재사용성이 증가
 
-#### Spring Framework의 장점
+### Spring Framework의 장점
 - **경량**
 - **IoC(Inversion of Control)** : 제어의 역행 -> 낮은 결합도(아래에 자세히 정리)
 - **AOP(Aspect Oriented Programming)** : 공통으로 사용하는 기능들을 외부의 독립된 클래스로 분리하고, 해당 기능을 프로그램 코드에 직접 명시하지 않고 선언적으로 처리하여 적용하는 것.
 
-### IoC(Inversion of Control) 컨테이너
+---
+
+## IoC(Inversion of Control) 컨테이너
 IoC란? 
 - 제어의 역전
 - 객체의 생성이나, 메소드의 호출이 개발자가 아닌 외부에 의해 결정되는 것.
 - 개발자가 의도한대로 흘러가는 프로그램이 아닌, 사용하고자 하는대로 사용가능한 프로그램.
 - 모델 간 결합도가 낮추는 패턴이자, 컨테이너
 
-> *뜬금*
+> **뜬금없지만..**
 > Eclipse에서 Spring 프로젝트를 만드는 방법
 > 1. Project 생성
 > 2. Spring Nature 주입
@@ -66,7 +68,7 @@ IoC란?
 > - GenericXmlApplicationContext : 파일 시스템 혹은 클래스 경로에 있는 XML 설정 파일을 로드하여 구동하는 컨테이너.
 > - XmlWebApplicationContext : 웹 기반의 스프링 어플리케이션을 개발할 때 사용하는 컨테이너
 
-#### Spring XML 파일
+### Spring XML 파일
 bean 저장소에 해당하는 Spring Bean Configuration File을 참조하여 bean의 생명주기를 관리하고, 서비스를 제공함.
 -> 프로젝트에 전체적으로 가장 중요한 역할이므로, 정확하게 작성하고 관리하는 것이 중요함.
 
@@ -120,3 +122,73 @@ IoC의 두 가지 지원 형태
     - 위와 같은 문제가 있음.
 
 - Spring에서는 이를 의존성 주입을 이용하여 해결함.
+
+## Annotation
+Annotation이란?
+- Java 코드에 추가하여 사용할 수 있는 메타데이터의 일종
+- JDK 1.5 버전 이상에서 사용 가능
+- Annotation은 클래스 파일에 삽입되어 컴파일러에 의해 생성된 후 자바 가상머신에 포함되어 작동한다.
+
+Annotation의 기능
+- 컴파일러에게 코드 문법 에러를 체크하도록 정보 제공
+- 소프트웨어 개발 툴이 빌드나 배치 시 코드를 자동으로 생성할 수 있도록 정보 제공
+- 실행 시(런타임 시) 특정 기능을 실행하도록 정보 제공
+---
+### Spring에서의 Annotation
+XML에 Context 관련 네임스페이스를 추가하여 어노테이션을 이용한 bean등록 및 의존성 주입이 가능하다.
+
+**component-scan 설정**
+bean을 하나하나 등록하지 않고, 패키지를 스캔하여 자동으로 생성하기 위한 Element
+```xml
+<context:component-scan base-package="com.example"></context:component-scan>
+<!-- com.example 패키지를 스캔하여 bean을 자동으로 등록 -->
+```
+
+### Bean 등록하기
+- @Component
+`<context:component-scan>`을 이용하여 스캔할 때 bean으로 등록할 대상 Class를 지정하는 annotation
+
+> Component 외에도 많은 annotation이 bean 등록을 지원한다.
+자세한건 해당 파트에 가서 정리하는걸로...
+
+
+```java
+@Component("ltv") // 괄호 안은 bean의 id 지정
+public class LTV implements TV{
+    public LTV(){
+        ...
+    }
+}
+```
+
+> id나 name 속성 미지정 시 Lookup할 때 이름은 클래스 이름의 앞 글자를 소문자로 바꾸면 됨. (ex. `class LTV` -> `lTV`)
+
+### 의존성 주입 설정
+의존성 주입을 지원하는 Annotation들
+- @Autowired
+해당 변수 위에 설정하여 해당 타입의 객체를 찾아서 자동으로 할당(Spring 기본 제공)
+- @Qualifier
+특정 객체의 이름을 이용하여 의존성 주입 시 사용 (Spring 기본 제공)
+- @Inject
+@Autowired와 동일한 기능 (Spring 기본 X)
+- @Resource
+@Autowired와 @Qualifier의 기능을 결합 (Spring 기본 X)
+
+의존성 주입에 있어서 XML 설정과 Annotation 설정은 장단점이 상충함.
+
+- XML
+    - Java 코드를 수정하지 않고, XML만 변경하면 의존관계를 변경 가능. -> 유지보수가 편함.
+    - XML 설정 자체의 복잡함, 부담
+    - Java 코드에 의존관계와 관련된 어떠한 메타데이터가 없으므로 XML 설정을 해석해야 의존성 확인 가능.
+- Annotation
+    - XML 부담 X
+    - 의존관계에 대한 정보를 Java 코드에서 확인 가능. -> 사용하기 편함
+    - 의존관계 변경 시 Java 코드를 변경해야함.
+
+### 결론
+**둘 다 섞어서 쓰자.**
+
+변경되지 않는 객체는 **Annotation** 설정 -> 쉽게 작성 가능
+변경될 가능성이 있는 객체는 **XML** 설정 -> 유지보수 편함
+
+> 라이브러리 형태로 제공되는 클래스는 반드시 XML 설정을 통해서만 사용 가능
