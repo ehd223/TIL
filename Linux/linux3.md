@@ -1,4 +1,4 @@
-Linux3
+하드디스크 관리와 RAID
 =====
 
 > 날짜 : 19.07.26
@@ -22,8 +22,25 @@ Linux3
 3. `mkfs`를 통해 파일시스템 생성(formatting)
 4. 하드디스크에 실제 사용 할 디렉토리를 mount
 
-<iframe
-  src="https://carbon.now.sh/embed/?bg=rgba(171%2C%20184%2C%20195%2C%201)&t=lucario&wt=none&l=text%2Fx-java&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false"
-  style="transform:scale(0.7); width:1024px; height:473px; border:0; overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+## RAID
+> RAID(Redundant Array of Independent/Inexpensive Disks)
+여러 개의 하드디스크를 하나의 하드디스크처럼 사용하는 방식.
+효과 : 비용 절감, 신뢰성 및 성능 향상
+
+### RAID 레벨
+
+1. Linear RAID
+    - 최소 두 장의 하드디스크가 필요
+    - 연결된 하드디스크들을 하나의 볼륩으로 사용
+    - 순차적으로 앞 하드디스크부터 채워나가는 방식.
+
+
+2. RAID 0
+    - 
+3. RAID 1
+4. RAID 2
+5. RAID 3
+5. RAID 4
+6. RAID 5
+7. RAID 6
+8. 혼합 방식
