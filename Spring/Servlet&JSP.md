@@ -14,8 +14,9 @@ Server Program (Servlet)
 WAS에서 처리할 요청들을 미리 XML 등의 설정파일을 이용하여 설정하고, 해당 패턴하는 요청을 받으면 WAS로 넘기는 형식.
 
 ### WAS
-- DB와 연동하여 다양한 비즈니스 로직을 처리하기 위해 만들어진 Application Server
+- DB와 연동하여 다양한 비즈니스 로직을 처리하기 위해 만들어진 Application Server
 - 대부분의 경우 Web Server의 기능(static content 제공)을 포함.
+
 > **등장 배경**
 기존 Web Server는 요청에 따른 정적인 파일만 제공하기 때문에, Client에 로직이 들어있어야 했음. 이에 따라 Client 프로그램의 부하, 로직 변경에 따른 Client 패치, 보안 문제 등의 문제가 발생. 이를 해결하기 위해 미들웨어 개념의 WAS가 등장.
 
@@ -90,7 +91,7 @@ JSP 예제
 
 
 **Attribute란?**
-- attribute는 Web application의 구성 컴포넌트(JSP, Servlet, Listenr) 내에서 메소드로 저장되고 관리되는 객체.)
+- attribute는 Web application의 구성 컴포넌트(JSP, Servlet, Listenr) 내에서 메소드로 저장되고 관리되는 객체.
 - 각 컴포넌트가 attribute를 공유하는 공간
     - page : pageContext 객체를 이용
     하나의 jsp 페이지 내에서 공유

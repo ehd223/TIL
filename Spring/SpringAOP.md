@@ -3,7 +3,6 @@ Spring AOP
 
 > 날짜 : 19.07.03
 
------
 
 ## Spring AOP
 
@@ -29,7 +28,7 @@ Spring AOP
     - Aspect가 '무엇'을 '언제' 할지를 정의
     - `Before` : JoinPoint의 실행 전
     - `Around` : JoinPoint의 앞 뒤
-    > `Around` 메소드는 `ProceedingJoinPoint` 객체(PointCut)를 받아와 proceed() 메소드를 호출해야 한다.
+    > `Around` 메소드는 `ProceedingJoinPoint` 객체(PointCut)를 받아와 proceed() 메소드를 호출해야 한다. / 포인트컷의 앞, 뒤로 부가기능을 실행하기 때문에 
     - `After throwing` : JoinPoint 예외 발생 시
     - `After returning` : JoinPoint 정상적으로 종료 시
     - `Introduction` : 클래스에 인터페이스와 구현을 추가하는 특수한 Advice
