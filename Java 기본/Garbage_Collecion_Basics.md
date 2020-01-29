@@ -68,3 +68,4 @@ Java GC를 튜닝하는 가장 좋은 접근방법은 JVM에 플래그를 설정
 추가적인 튜닝은 힙이나 section들의 크기를 변경하고 jstat과 같은 툴을 이용해 GC 효율성을 측정해가며 이루어낼 수 있다.
 
 
+출처 : https://stackify.com/what-is-java-garbage-collection/
