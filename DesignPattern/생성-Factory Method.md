@@ -39,83 +39,31 @@ public class Main{
 }
 ```
 
-만약 위의 상황에서 트럭이 아닌 다른 운송수단을 이용하여 운송을 해야한다면?
-
-
-```java
-// 트럭을 이용하여 화물 운송을 하는 Truck 클래스
-public class Truck{
-    public void deliver(){
-        ...
-    }
-}
-
-// 배를 이용하여 화물 운송을 하는 Ship 클래스
-public class Ship{
-    public void deliver(){
-        ...
-    }
-}
-
-public class Logistics{
-    public Truck createTruckTransport(){
-        return new Truck();
-    }
-
-    public Ship createShipTransport(){
-        return new Ship();
-    }
-
-    public String operation(String transport){
-        Object product = null;
-        switch(transport){
-            case "truck":
-                product = createTruckTransport();
-                break;
-            case "ship":
-                product = createShipTransport();
-                break;
-        }
-
-        return product.delivery();
-    }
-}
-
-public class Main{
-    public static void main(){
-        Logistics logistics = new Logistics();
-        logistics.operation("truck");
-        logistics.operation("ship");
-    }
-}
-```
-
 더 다양한 운송수단이 추가될수록 새로운 객체와 생성 메소드를 위와 같이 추가하고 사용해야하는 번거로움이 생긴다. 게다가, 같은 메소드를 반복해서 사용하게되는 중복코드가 발생하게 된다.
 
 조금 더 객체지향적으로 짜보면 아래와 같이 된다.
 
 ```java
 public abstract class Logistics{
-    public Transport createTransport(String transportStr){
-        Transport transport = null;
-        switch(transportStr){
-            case "truck":
-                transport = createTruckTransport();
-                break;
-            case "ship":
-                transport = createShipTransport();
-                break;
-            default:
-                transport = null;
-                break;
-        }
+    public abstract Transport createTransport();
 
-        return transport;
-    }
-
-    public String operation(String transportStr){
-        Transport transport = createTransport(transportStr);
+    public String operation(){
+        Transport transport = this.createTransport();
         return transport.deliver();
+    }
+}
+
+public class RoadLogistics extends Logistics {
+    @Override
+    public Transport createTransport(){
+        return new Truck();
+    }
+}
+
+public class SeaLogistics extends Logistics {
+    @Override
+    public Transport createTransport(){
+        return new Ship();
     }
 }
 
@@ -137,10 +85,8 @@ public class Ship{
 
 public class Main{
     public static void main(){
-        Logistics logistics = new Logistics();
-
-        logistics.operation("truck");
-        logistics.operation("ship");
+        Logistics logistics = new SeaLogistics();
+        logistics.operation();
     }
 }
 ```
