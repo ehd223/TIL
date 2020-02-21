@@ -215,13 +215,165 @@ public synchronized void incrementCounter(){
 }
 ```
 
-Synchronized method는 "intrinsic locks" 또는 "monitor locks"이라고 불리우는 방법을 사용한다.(각각 고유 락, 모니터 락 - 동의어)
+Synchronized method는 "intrinsic locks" 또는 "monitor locks"이라고 불리우는 방법을 사용한다.(각각 고유 락, 모니터 락)
 고유 락(Intrinsic lock)은 특정 클래스의 인스턴스와 관련된 암시적 내부 속성이다.(== 모든 객체가 고유 락을 갖고있다.)
 
 스레드가 Synchronized 메소드를 호출하면 그 **스레드는** 고유 락을 얻게 된다. 스레드가 메소드 실행을 종료한 뒤에 락이 해제되므로 다른 스레드가 락을 얻어 메소드에 접근할 수 있다.
 
 
-#### 
+#### 8. Synchronized Statement
+간단한 몇 줄의 코드를 Thread-safe하게 만들기 위해 하나의 메소드 전체에 동기화를 거는 것은 과도할 때가 있다.
+
+이를 해결하기 위해 statement 단위로 동기화를 거는 것이 가능하다.
+
+```java
+public void incrementCounter(){
+    // 동기화가 필요없는 statements
+    // ..........
+    synchronized(this){
+        counter += 1
+    }
+}
+```
+
+`incrementCounter()`메소드에 부가적인 기능들이 추가되었다고 가정했을 때, 메소드 전체에 동기화를 거는 것 보다는 객체 내의 공유자원인 counter에 접근하는 부분에 대해서 만 동기화를 걸어 thread-safe하게 만드는 것이 효율적일 수 있다.
+
+동기화의 비용은 만만치않기 때문에, synchronized statement를 적절히 활용하는 것이 중요하다.
+
+#### 9. Volatile Fields
+Syncrhnized 메소드와 블록은 스레드 간 변수의 가시성 문제를 해결하는데 편리하다. 그렇다해도, 정규 클래스의 멤버변수는 CPU에 캐시되어 있을 가능성이 높다. 따라서 특정 필드이 대한 후속 업데이트는 동기화된 경우에도 다른 스레드에서 보이지 않을 수 있다.
+
+이러한 상황을 막기 위해 `volatile` 클래스의 필드를 사용할 수 있다.
+
+```java
+public class Counter {
+    private volatile int counter;
+
+    // 생성자, getter 등
+}
+```
+
+`volatile` 키워드를 이용하여 원하는 변수를 메인 메모리에 저장하도록 JVM과 compiler에 명령을 할 수 있다. 이렇게하면 JVM이 예시의 counter 변수의 값을 읽을 때마다 CPU 캐시가 아닌 메인 메모리에서 읽어온다. 마찬가지로, JVM이 counter 변수의 값을 쓸 때마다 메인 메모리에 그 값이 기록된다.
+
+게다가 volatile 변수의 사용은 지정된 스레드에 표시되는 모든 변수를 메인 메모리에서도 읽을 수 있다.
+
+```java
+public class User {
+    private String name;
+    private volatile int age;
+
+    // 생성자, getter 등
+}
+```
+
+이러한 경우에는, JVM은 age 변수를 메인 메모리에 쓸 때마다, volatile이 아닌이 메인 메모리에 name 변수도 메인 메모리에 쓰게된다. 이것은 두 변수의 가장 마지막 값이 메인 메모리에 저장되는 것을 보장하여 이후에 일어나는 값의 업데이트도 자동으로 다른 스레드에서 볼 수 있게된다.
+
+volatile 변수가 제공하는 확장된 보증은 **full volatile visibility guarantee** 라고도 한다.
+
+#### 10. Extrinsic Locking
+intrinsic lock 대신 extrinsic monitor lock을 사용하여 Counter 클래스의 thread-safe 한 구현을 개선할 수 있다.
+
+*extrinsic lock(명시적 혹은 외부 락 정도로 해석하면 될 듯)은 또 멀티스레드 환경에서 공유하는 자원에 대해 조정된 액세스를 제공하지만, 외부 엔티티를 사용하여 리소스에 대한 독점 액세스를 강제한다.* 
+
+```java
+public class ExtrinsicLockCounter {
+    private int counter = 0;
+    private final Object lock = new Object(0);
+
+    public void incrementCounter() {
+        synchronized(lock) {
+            counter += 1;
+        }
+    }
+
+    // getter 등
+}
+```
+
+순수한 Object 클래스의 인스턴스를 써서 extrinsic lock을 만들었다. 이 방법이 락의 보안성을 강화시켜 조금 더 나은 방법이다. 
+
+synchronize 키워드를 이용하는 intrinsic locking은 공격자가 intrinsic lock을 얻어서 서비스 거부(Denail of service - DoS) 상태를 유발하여 deadlock을 걸 수 있다.
+
+intrisic lock과는 반대로 extrinsic lock은 밖에서 접근이 불가능한 private 엔티티를 사용한다. 이로 인해 공격자가 락을 얻고 deadlock 상태로 만드는 것이 어려워진다.
+
+#### 11. Reentrant Locks
+Java에서는 향상된 Lock의 구현 세트를 제공하며, 그것들의 동작은 위어서 설명한 intrinsick lock보다 더 정교하다(sophisticated).
+
+intrinsic lock의 경우 락을 획득하기 위한 모델은 생각보다 견고하다. 한 스레드가 락을 얻은 후 메소드 또는 코드 블록을 실행한 다음, 마지막으로 락을 해제하여 다른 스레드가 락을 얻고 메소드에 액세스하는 구조이다.
+
+intrinsic lock에는 대기중인 스레드를 확인하고 가장 긴 대기 스레드에 우선순위를 부여하는 기본 메커니즘이 없다. (불공정방법)
+
+> intrinsic lock(synchronized)는 먼저 대기중이던 스레드의 우선순위를 보장하지 않음.
+
+**ReentrantLock**는 이러한 불공정방법을 우선순위를 부여하여 순서를 보장하는 방법으로 해결한다. 또한, 스레드에 *리소스 부족*이 발생하지 않는다.
+
+> Reentrant, Reentrancy
+> 재진입이 가능하다는 뜻으로, 락의 획득이 호출 단위가 아닌 스레드 단위로 일어난다는 것을 의미함. 이미 락을 얻은 스레드는 같은 락을 얻기 위해 대기할 필요가 없다.
+
+```java
+public class ReentrantLockCounter {
+    private int counter;
+    private final ReentrantLock reLock = new ReentrantLock(true);
+
+    public void incrementCounter() {
+        reLock.lock();
+        try {
+            counter += 1;
+        } finally {
+            reLock.unlock();
+        }
+    }
+}
+```
+
+`ReentrantLock`의 생성자는 `fairness` 파라미터를 선택적으로 추가할 수 있다. 여러 개의 스레드들이 락을 얻으려는 상태에서 fairness가 true로 되어있다면 JVM은 가장 오래 기다린 스레드에게 우선순위를 주어 락의 접근권한을 부여한다.
+
+> **ReentrantLock** vs **Synchronized**
+> 위 두 가지 방식의 가장 큰 차이점은 **lock을 인터럽트가 가능하도록 걸거나 timeout시킬 수 있다는 점**이다. 
+> Synchronized로 구현을 하면 락을 획득하는 순서를 보장하지 않는 **불공정성** 만을 가지고있기 때문에 무한정 기다리게 되는 Thread가 생길 수 있다. 
+> 물론 lock 획득에 있어서 불공정성이 갖는 장점도 있다. 이는 뒤에서 서술하기로 하고..
+> 우선 두 방식의 차이를 좀 더 자세하게 알아보자면..
+> 1. ReentrantLock은 명시적인 lock으로 락을 걸 시점과 종료할 시점을 명시해야 한다.
+> 2. ReentrantLock은 fairness를 설정할 수 있다.
+> 3. 앞서 말했듯 ReentrantLock은 락을 얻기 위해 기다리는 스레드에 interrupt를 걸 수 있다.
+> <br>
+> 위 차이점만 보면 ReentrantLock이 확실히 다루기 편해보인다.
+> 하지만, Oracle의 선임 연구원인 Dave Dice의 글에 의하면 J2SE6 부터는 거의 차이가 없으며, 대부분의 상황에서 이용하기에 두 가지 방법 모두 충분하다고 언급했다.
+> 또 상황에 따라 ReentrantLock이 좋을 수도 있고, Synchronized가 좋을 수도 있다고 한다. 지금은 모르겠지만, 상황에 따라 적절한 도구를 선택하면 된다는 뜻이라고 생각한다.
+
+
+
+#### 13. Read/Write Locks
+Thread-safety를 보장하기 위한 다른 강력한 메커니즘은 `ReadWriteLock` 인터페이스를 사용하는 것이다.
+
+`ReadWriteLock`의 인스턴스는 실제로 읽기 전용 작업과 쓰기 작업을 위한 한 쌍의 락을 사용한다. 그 결과로, 리소스를 쓰는 중인 스레드가 없다면 많은 스레드가 동시에 읽을 수 있다. 또한 리소스를 쓰는 스레드는 다른 스레드가 읽지 못하게 할 수 있다.
+
+```java
+public class ReentrantReadWriteLockCounter {
+    private int counter;
+    private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+    private final Lock readLock = rwLock.readLock();
+    private final Lock writeLock = rwLock.writeLock();
+
+    public void incrementCounter() {
+        writeLock.lock();
+        try {
+            counter += 1;
+        } finally {
+            writeLock.unlock();
+        }
+    }
+     
+    public int getCounter() {
+        readLock.lock();
+        try {
+            return counter;
+        } finally {
+            readLock.unlock();
+        }
+    }
+}
+```
 
 
 ### 이거 Thread safe야? (Communication)
@@ -277,3 +429,4 @@ queue.DoSomethingToHead(first => {Console.WriteLine(first);};)
 ### 참고
 - <https://docs.microsoft.com/en-nz/archive/blogs/ericlippert/what-is-this-thing-you-call-thread-safe>
 - <https://www.baeldung.com/java-thread-safety>
+- <https://blogs.oracle.com/dave/javautilconcurrent-reentrantlock-vs-synchronized-which-should-you-use>
