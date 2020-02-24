@@ -125,7 +125,7 @@ public class ThreadState {
 
 Thread-local 필드는 getter와 setter를 통해 각 스레드가 독립적으로 초기화된 필드의 복사본을 얻어 자체적으로 상태를 갖는다는 점을 제외하면 일반 클래스의 필드와 비슷하다.
 
-#### 5. Synchronized Collections
+#### 4. Synchronized Collections
 동기화 wrapper들을 이용하여 thread-safe한 콜렉션을 만들 수 있다.
 
 ```java
@@ -141,7 +141,7 @@ synchronized 컬렉션은 각자 메소드에서 고유 로킹(intrinsic locking
 이것은 메소드가 한 번에 하나의 스레드에서만 접근 가능하며, 다른 스레드는 unlock될 때까지 접근이 막힌다는 것을 의미한다.
 따라서, 동기화는 synchhronized access의 기본적인 로직에 의해 성능상 불이익이 생긴다.
 
-#### 6. Concurrent Collections
+#### 5. Concurrent Collections
 synchronized collection을 대체하기 위해 concurrent collection을 사용할 수 있다.
 Java에서는 `ConcurrentHashMap`과 같은 동시성을 지닌 collection들을 포함하는 `java.util.concurrent` 패키지를 제공한다.
 
