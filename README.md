@@ -1,4 +1,4 @@
-빅데이터, IoT 과정 TIL
+TIL
 =====
 
 ## <strong>규칙</strong>
