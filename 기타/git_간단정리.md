@@ -32,6 +32,8 @@ Git과 SVN은 같은 VCS이지만 굉장히 큰 차이를 가지고 있습니다
 ## Git 혼자 사용해보기
 우선, git과 github을 이용해서 간단하게 개인 프로젝트를 관리 해보겠습니다.
 
+Branch에 관해 아직 언급하지 않았으므로 이 섹션에서는 단일 브랜치 하나(master) 에서만 작업을 해보겠습니다.
+
 ### 환경세팅
 #### 윈도우
 [다운로드 링크](https://git-scm.com/download/win) https://git-scm.com/download/win 에 들어가셔서 자신에게 맞는 설치파일을 다운받아 주세요.
@@ -134,7 +136,7 @@ Remote의 최신 commit은 Local Repository에서는 모르는 변경점입니�
     2. `git fetch` 명령어를 통하여 먼저 Local repository에 변경사항을 가져온 후 실제 workspace의 코드에 반영하기 전에 차이점을 미리 알 수도 있습니다.
     3. 만약 수정중이던 동일한 부분의 변경사항이 있을 경우 충돌(conflict)이 일어납니다. 충돌은 해당 파일을 repository에서 확인하여 충돌점을 적당히 해결하고 `mark as resolved` 라고 충돌이 해결되었음을 알리는 commit을 남겨야 합니다.
 
-### 자주쓰는 명령어 모음
+## 자주쓰는 명령어 모음(혼자 사용할 때)
 - `git add <파일경로>` : 경로에 있는 파일을 staging
 - `git commit` : staging 되어있는 파일들을 commit하는 명령어. -m 옵션을 주어서 commit message까지 한 줄에 작성하거나, -a 옵션을 주어 staging을 생략(모든 파일의 변경사항을 staging 후 commit)하고 commit할 수도 있습니다.
 - `git reset --옵션 <커밋이름>` : 원하는 commit의 상태로 local repository를 되돌립니다. hard, mixed, soft의 세 가지 옵션이 있습니다.
@@ -144,9 +146,12 @@ reset 후 commit을 하면 돌아간 commit까지의 history가 삭제됩니다.
 - `git diff` : 최근 commit과 현재 사항의 차이를 볼 수 있습니다. commit 이름을 뒤에 명시하여 비교할 수도 있고 commit과 commit간에도 비교가 가능합니다.
 - `git push` : remote repository로 local repository의 commit들을 push 합니다.
 - `git pull` : remote repository의 변경점들을 local repository로 가져와 업데이트 합니다.
+- `git clone <repository url>` : remote repository를 복제해서 현재 위치로 가져옵니다.
+
 
 이 외에도 rebase, merge 등 정말 많지만 혼자 간단하게 사용하기에는 이정도면 충분하다고 생각합니다.
 
 여기까지가 혼자서 git을 이용하여 작업할 수 있는 최소한의 기능 소개입니다.
 
+다음 문서에서는 git의 가장 큰 장점인 branch 기능과 소규모 팀 단위의 협업은 어떻게 진행되는지에 대해 알아보겠습니다.
 
