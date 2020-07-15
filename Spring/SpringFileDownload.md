@@ -194,6 +194,16 @@ public void fileDownload(HttpServletResponse response) throws IOException {
 }
 ```
 
+시도해서 성공한 비슷한 copy util들
+
+- `java.nio.file.Files.copy()`
+- `org.apache.commons.io.IOUtils.copy()`
+- `org.springframework.util.FileCopyUtils` 클래스 활용
+
+StreamUtils 를 포함해서 copy 메소드 내부에서 어떻게 돌아가는지는 아직 뜯어보지 않았지만, 2048바이트를 고정으로 내보내는 내 코드보다는 훨씬 유연할 것이라 생각되므로 최종 반영은 위의 코드로 결정하였다.
+
+#### WebClient
+
 
 Spring5 WebClient를 이용한 다운로드 소개
 해결
